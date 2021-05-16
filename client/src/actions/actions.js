@@ -39,7 +39,7 @@ export function getCountries () {
 
 export function getCountryByName(Name){
 	return function(dispatch){
-		return fetch(`http://localhost:5001/countries?name=${Name}`)
+		return fetch(`http://localhost:5000/countries?name=${Name}`)
 		.then(response=> response.json())
 		.then(json => {
 			dispatch({ type: "GET_COUNTRY_NAME", payload: json})
@@ -59,7 +59,7 @@ export function getCountryByName(Name){
 // }
 export function getCountryById(ID){
 	return function(dispatch){
-		return fetch(`http://localhost:5001/countries/${ID}`)
+		return fetch(`http://localhost:5000/countries/${ID}`)
 		.then(response => {
 			dispatch({ type: GET_COUNTRY_ID, payload: response.data})
 		})
@@ -68,7 +68,7 @@ export function getCountryById(ID){
 
 export const postActivities = (form, countries) => {
         return async () => { 
-           await axios.post('https://localhost:5001/activities', 
+           await axios.post('https://localhost:5000/activities', 
            Object.assign(form,
             {Countries: countries}))
         }
@@ -76,7 +76,7 @@ export const postActivities = (form, countries) => {
 
 export const getActivities = () => {
     return async (dispatch) => {
-        const getActivites = await axios.get('https://localhost:5001/countries')
+        const getActivites = await axios.get('https://localhost:5000/countries')
         dispatch({
             type: GET_ACTIVITIES,
             payload: getActivites.data
@@ -123,7 +123,7 @@ export function Sort(order, orderCountries) {
 
 export function regionFilter(data){
     return async (dispatch) => {
-        const getByRegion = await axios.get(`http://localhost:5001/countries?region=${data}`)
+        const getByRegion = await axios.get(`http://localhost:5000/countries?region=${data}`)
         dispatch({
             type: REGION_FILTER,
             payload: getByRegion.data
