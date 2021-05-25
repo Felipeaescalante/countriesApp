@@ -7,15 +7,15 @@ const { Activities, Country} = require('../db.js');
 
 router.post('/', async (req, res) => {
 
-    var {name, challenge, duration, season, countries } = req.body
+    var {Name, Challenge, Duration, Season, Countries } = req.body
 
     const newActivity = await Activities.create({
-        name,
-        challenge,
-        duration,
-        season
+        Name,
+        Challenge,
+        Duration,
+        Season
     })
-    countries.forEach(async (pais) => {
+    Countries.forEach(async (pais) => {
         let country = await Country.findOne({
             where: { ID: pais }
         })
@@ -25,10 +25,12 @@ router.post('/', async (req, res) => {
    
 })
 
-router.get('/activities', async (req, res) => {
+router.get('/', async (req, res) => {
     var activities = await Activities.findAll();
 
     res.json(activities);
 })
+
+
 
 module.exports = router;

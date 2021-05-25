@@ -12,14 +12,49 @@ const router = Router();
 
 router.get('/', async (req, res) => {  //por nombre y pasando los datos de la API a mi DB filtrando los objetos con lo requerido. 
 
-    let {name} = req.query;
+    let {Name} = req.query;
+    let {Region} = req.query;
+    let {activities} = req.query;
 
-    if(name) {
+    
+    if(activities) {
         try{
             return res.status(200).json(
                 await Country.findAll({
-                    // where: { Name},
-                    where:{ Name: {[Op.iLike] : `%${name}%` }},
+                    where: {activities: {[Op.iLike] : `%${activities}%` }},
+                    include: [Activities]
+                  
+                }) 
+            )
+        } catch(error) {
+            console.log(error)
+            res.status(404).send('Error by activity')
+        }
+
+
+    
+    
+}if(Region) {
+        try{
+            return res.status(200).json(
+                await Country.findAll({
+                   
+                    where:{ Region: {[Op.iLike] : `%${Region}%` }},
+                    include: [Activities]
+                                       
+                })
+                )
+        }
+        catch(error) {
+            console.log(error)
+            res.status(404).send('Error by region name')
+        }
+        
+    } if(Name) {
+        try{
+            return res.status(200).json(
+                await Country.findAll({
+                    where:{ Name: {[Op.iLike] : `%${Name}%` }},
                     include: [Activities]
                     
                    
@@ -30,7 +65,8 @@ router.get('/', async (req, res) => {  //por nombre y pasando los datos de la AP
             console.log(error)
             res.status(404).send('Error by name')
         }
-    } else {
+
+        }   else {
         try{
             const country = await Country.count();
             if(country === 0) {
@@ -55,7 +91,8 @@ router.get('/', async (req, res) => {  //por nombre y pasando los datos de la AP
             } else res.status(200).json( await Country.findAll({include: [Activities]})
             )
         } catch (e) {res.status(404).send('Can not find countries')}
-    }
+
+    } 
 })
 
 
@@ -65,7 +102,7 @@ router.get('/:id', async (req, res) => {
     const { id } = req.params;
     try {
         await Country.findAll({
-            // where: { Name},
+          
             where:{ ID: {[Op.iLike] : `%${id}%` }},
             include: [Activities]
         })
@@ -75,6 +112,9 @@ router.get('/:id', async (req, res) => {
         res.send("No pasa por ID")
     }
 })
+
+
+    
 
 
 module.exports = router;
