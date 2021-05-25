@@ -1,71 +1,61 @@
-import React, { Component, useState } from 'react';
-import {connect} from "react-redux";
-import './searchbar.css';
-import {getCountryByName, getCountries} from '../../actions/actions'
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import Country from '../country/country.js';
+import { getCountryById, getCountryByName } from '../../actions/actions'
 
+import "./searchbar.css"
 
-export class SearchBar extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            country: ""
-        };
-    }
-    
-    handleChange(e){
-      this.setState({country: e.target.value});
+export function Search(props) {
+	const [input, setInput] = useState({
+		country: "",
+	})
 
-};
+	function handleChange(e){
+		if(typeof e.target.value  === "number"){
+			alert("Please enter a valid name")
+		}
+    setInput({
+    	country: e.target.value
+    })};
 
-    handleSubmit(e) {
-    e.preventDefault();
-    this.props.getCountries();
-    
-    }
- 
-    
-render(){
-    const {country} = this.state;
-    return (
-        <div>
-          <h2>Buscador</h2>
-          <form className="form-container" onSubmit={(e) => this.handleSubmit(e)}>
-            <div>
-              <label className="label" htmlFor="title">Country: </label>
-              <input
-                type="text"
-                id="title"
-                autoComplete="off"
-                value={country}
-                onChange={(e) => this.handleChange(e)}
-              />
-            </div>
-            <button  type="submit">BUSCAR</button>
-          </form>
-          <ul>
-           {
-           this.props.countries && this.props.countries.map(country => (
-            <div>
-            {country.Name}
-            </div>
-           ))
-}
-          </ul>
-          </div>
-    );
-}
+    function handleSubmit(e){
+    	e.preventDefault()
+
+    if (input.country) {
+      props.getCountryByName(input.country)
+    } else {
+      alert("You must enter a valid country name!")
+	}
+  }
+
+	return(
+	<div className="cnt">
+		<form onSubmit={(e) => handleSubmit(e)}>
+		<input
+		className="input"
+		type="text"
+		placeholder="Search Country..."
+		name="pais"
+		value={input.country}
+		onChange={(e) => handleChange(e)}
+
+		/>
+		<button type="submit" className="btns">Search</button>
+		</form>
+	</div>
+	)
 }
 
-function mapStateToProps(state){   // traigo el estado
-    return {
-        pais: state.country
-    }
+function mapStateToProps(state) {
+  return {
+    	countries: state.countries
+	}
 }
 
-function mapDispatchToProps(dispatch){  // traigo los parámtros
-    return {
-        getCountries: name => dispatch(getCountries(name))
-    }
+function mapDispatchToProps(dispatch) {
+  return {
+    getCountryByName: Name => dispatch(getCountryByName(Name))
+  };
 }
 
-export default connect (mapStateToProps, mapDispatchToProps)(SearchBar)
+export default connect(mapStateToProps,mapDispatchToProps)(Search)

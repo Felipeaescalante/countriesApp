@@ -1,0 +1,91 @@
+.card1{
+    color: white;
+    margin: 25px
+   
+
+}
+
+ .flagdetail{
+    width:300px;
+    height:300px;
+    border-radius:180px;
+    border:2px solid rgb(255, 255, 255); height: 100px;
+    width: 150px;
+  
+    margin-left: 45%;
+    margin-bottom: 10%;
+    margin-top: 5%
+}
+
+
+
+.blockdetails .namedetail{
+    font-size:25px;
+    display:flex;
+    justify-content: center;
+    color: rgb(77, 214, 214);
+}
+.blockdetails .restdetails{
+    display:block;
+    justify-content:center;
+    padding: 25px;
+}
+.blockdetails .restdetails p {
+    padding: 2px;
+}
+.totdetail{
+    color:white;
+}
+
+/* .textdetail{  
+    margin:0 0.8vmax;
+    height:4%;
+    font-size:10px;
+    color:white;
+}    */
+
+p{
+    color:white;
+    display: flex;
+    justify-content: center;
+    margin: auto 0;
+    margin-top: 1%;
+
+}
+
+.blockdetails{
+    height: 250px;
+    width: 300px;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(192, 188, 188, 0.137);
+    margin-left: 40%;
+    margin-top: -08%;
+    
+}
+
+.boxactivities {
+    height: 250px;
+    width: 300px;
+    margin: 25px;
+    padding: 0;
+    background-color: rgba(192, 188, 188, 0.137);
+    margin-left: 65%;
+    margin-top: -17.9%;
+
+}
+
+.boxactivities .activities{
+    padding: 80px;
+    display:block;
+    justify-content:center;
+
+}
+.boxactivities .titleact{
+    font-size:25px;
+    display:flex;
+    justify-content: center;
+    color: rgb(77, 214, 214);
+    margin-top: -78%;
+    padding: 30px;
+}

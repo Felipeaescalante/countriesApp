@@ -1,86 +1,67 @@
-import {GET_API, GET_COUNTRIES, GET_COUNTRY_ID, GET_COUNTRY_NAME, SORT_COUNTRIES, REGION_FILTER, GET_ACTIVITIES, ASCENDING, DESCENDING} from '../const'
+import {GET_API, GET_COUNTRIES, GET_COUNTRY_ID, GET_COUNTRY_NAME, CREATE_ACTIVITY, SORT_COUNTRIES, REGION_FILTER, GET_ACTIVITIES, ASCENDING, DESCENDING, SORT_POPULATION, POP_ASCENDING, POP_DESCENDING} from '../const'
 import axios from 'axios';
-import {COUNTRIES} from "../const"
 
-export function getCountries () {
+export function getCountries() {
     return  function (dispatch)  {
        return  fetch(GET_API)
        .then(response => response.json())
        .then(json => {
-           dispatch({ type: "GET_MOVIES", payload: json})
+           dispatch({ type: GET_COUNTRIES, payload: json})
        })
     }
 }
 
 
- 
-// export const getCountryByName = (name) => {
-//     return  async (dispatch) => {
-//         const reqApiName = await axios.get(`https://localhost:5001/countries?name=${name}`)
-//             dispatch({
-//                 type: GET_COUNTRY_NAME,
-//                 payload: reqApiName.data
-//             })
-//     }
-// }
-
-// export const getCountryByName = (name) => {
-//     return  function (dispatch)  {
-//         axios
-//         .get(`http://localhost:5001/countries?name=${name}`)
-//         .then((response) => {
-//         dispatch({
-//                 type: GET_COUNTRY_NAME,
-//                 payload: response.data
-//             })
-//         })
-//     }
-// }
 
 export function getCountryByName(Name){
 	return function(dispatch){
-		return fetch(`http://localhost:5000/countries?name=${Name}`)
+		return fetch(`http://localhost:5000/countries?Name=${Name}`)
 		.then(response=> response.json())
 		.then(json => {
-			dispatch({ type: "GET_COUNTRY_NAME", payload: json})
+			dispatch({ 
+                type: GET_COUNTRY_NAME, 
+                payload: json})
 		})
 	}
 }
  
 
-// export const getCountryById = (ID) =>{
-//     return  async (dispatch) => {
-//         const reqApiId = await axios.get(`https://localhost:3001/countries/${ID}`)
-//             dispatch({
-//                 type: GET_COUNTRY_ID,
-//                 payload: reqApiId.data
-//             })
-//     }
-// }
+
 export function getCountryById(ID){
 	return function(dispatch){
 		return fetch(`http://localhost:5000/countries/${ID}`)
-		.then(response => {
-			dispatch({ type: GET_COUNTRY_ID, payload: response.data})
+        .then(response => response.json())
+		.then(json => {
+			dispatch({ 
+                type: GET_COUNTRY_ID, 
+                payload: json[0]
+            })
 		})
 	}
 }
 
-export const postActivities = (form, countries) => {
-        return async () => { 
-           await axios.post('https://localhost:5000/activities', 
-           Object.assign(form,
-            {Countries: countries}))
-        }
+export function getCountryCreate(ID){
+    return function (dispatch){
+		return fetch(`http://localhost:5000/countries/${ID}`)
+        .then(response => response.json())
+    }
 }
 
-export const getActivities = () => {
-    return async (dispatch) => {
-        const getActivites = await axios.get('https://localhost:5000/countries')
-        dispatch({
-            type: GET_ACTIVITIES,
-            payload: getActivites.data
-        })
+
+export function getActivities(){
+	return function(dispatch){
+		return fetch('http://localhost:5000/activities')
+			.then(response => response.json())
+			.then(json => {
+				dispatch({type: GET_ACTIVITIES, payload: json})
+		})
+	}}
+
+
+export const CountryActivities = (activity) => {
+    return {
+        type: "FILTER_BY_ACTIVITIES",
+        payload: activity
     }
 }
 
@@ -89,8 +70,8 @@ export function Sort(order, orderCountries) {
 
     countries.sort((a, b) => {
 
-        let nameA = a.name.toUpperCase();
-        let nameB = b.name.toUpperCase();
+        let nameA = a.Name.toUpperCase();
+        let nameB = b.Name.toUpperCase();
 
         if(order === ASCENDING){
             if (nameA < nameB){
@@ -119,11 +100,44 @@ export function Sort(order, orderCountries) {
     }
 }
 
+export function SortPopulation (sort, sortPopulation) {
+    let population = [...sortPopulation]
+
+    population.sort(function(a,b){
+        var populationA = parseFloat(a.Population)
+        var populationB = parseFloat(b.Population)
+
+        if(sort === POP_ASCENDING){
+            if(populationA < populationB){
+                return -1;
+            }
+            if (populationA > populationB){
+                return 1;
+            } return 0
+        }
+        if(sort === POP_DESCENDING){
+            if(populationA < populationB){
+                return 1;
+            }
+            if (populationA > populationB){
+                return -1;
+            }
+            return 0
+        }
+    })
+    return function (dispatch){
+        dispatch({
+             type: SORT_POPULATION, 
+             payload: population
+            })
+    }
+}
 
 
-export function regionFilter(data){
+
+export function RegionFilter(data){
     return async (dispatch) => {
-        const getByRegion = await axios.get(`http://localhost:5000/countries?region=${data}`)
+        const getByRegion = await axios.get(`http://localhost:5000/countries?Region=${data}`)
         dispatch({
             type: REGION_FILTER,
             payload: getByRegion.data
@@ -131,3 +145,38 @@ export function regionFilter(data){
 
     }
 }
+
+export function GetRegions(){
+    return  (dispatch) => 
+    fetch(`http://localhost:5000/countries`)
+        .then((response) =>response.json())
+        .then((json) =>{
+            dispatch({ 
+                type: REGION_FILTER,
+                payload: json
+            })
+        })
+    }
+
+    export const OrderByRegion = (Region) => (dispatch, getState) => {
+        let filteredRegions = [];
+      
+        if (Region === "All") {
+          filteredRegions = getState().countries.slice();
+        } else {
+          filteredRegions = getState()
+            .countries.slice()
+            .filter((country) =>
+              (country.Region || []).includes(Region)
+            )
+        };
+        dispatch({
+          type: "FILTER_BY_REGION",
+          payload: {
+            Region,
+            regionCountries: filteredRegions,
+          },
+        });
+      };
+
+

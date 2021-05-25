@@ -1,61 +1,28 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-import {getCountries} from '../../actions/actions'
-import {connect} from "react-redux";
+import React from "react";
+import {Link} from "react-router-dom";
 
-export function Country(props){
-	console.log(props)
-// 	return(
-// 		<div className="card">
-// 		<div className="imgn">
-// 			<img src={data.flag} alt={data.name} className='imgcards'/>
-// 		</div>
-// 		<div className="datos">
-// 			<div className="nombre">
-// 			<h1>{data.name}</h1>
-// 			</div>
-// 			<h2>{data.region}</h2>
-// 			<Link to={`/home/details/${data.ID}`}>
-// 			   <button className="detail">Country Detail</button>
-// 		    </Link>
-// 		</div>
-// 		</div>
-// 		)
+import './country.css'
 
-		// const [countries, setCountries] = React.useState([])
-
-		function getCountriesFunction(){
-			props.getCountries()
-		}
-		 
-		React.useEffect(() =>{
-			getCountriesFunction()
-		},[])
-		return (
-			<div>
-				{props.countries.map((c)=>{
-					return (
-					<div>
-						<h1>{c.Name}</h1>
-					</div>
-						 )
-				})}
+export function Country (props){
+	return (
+		<div>
+		<div className="continer">
+			{/* <img className="flag" src={props.Flag} alt={props.Name} /> */}
+			<Link to={`/home/detail${props.ID}`}>
+			<button className="buttonCountry"><img className="flag" src={props.Flag} alt={props.Name} /></button>
+		    </Link>
+		</div>
+		<div className="textcountry">
+			<h2 className="region">{props.Region}</h2>
+			<div className="namecountry">
+			<h1 >{props.Name}</h1>
 			</div>
-		)
-
-
-}
-function mapStateToProps(state){   // traigo el estado
-    return {
-        countries: state.countries
-    }
+		</div>
+		 
+		</div>
+	)
 }
 
-function mapDispatchToProps(dispatch){  // traigo los parámtros
-    return {
-        getCountries: name => dispatch(getCountries(name))
-    }
-}
-export default connect (mapStateToProps, mapDispatchToProps)(Country)
+export default Country;
 
 

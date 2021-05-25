@@ -1,0 +1,29 @@
+
+/* .div{
+
+
+    min-height:90vh;
+    background-color:transparent;
+    display:flex;
+    flex-direction:column;
+    outline: none;
+} */
+
+/* .home{
+    text-align:center;
+                position: relative;
+                left: 250px;
+                bottom: -100px;
+                height: 200px;
+                width: 500px;
+                color: white;
+} */
+
+.cards{
+    height: 80%;
+    display:flex;
+    margin: auto 0 ;
+    justify-content: space-around;
+    flex-wrap:wrap;
+    color: white;
+}

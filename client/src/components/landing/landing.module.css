@@ -2,23 +2,28 @@
 
 .landing{
     text-align:center;
-                position: relative;
-                left: 250px;
-                bottom: -100px;
-                height: 200px;
-                width: 500px;
-                color: white;
+    position: relative;
+    left: 500px;
+    bottom: -300px;
+    height: 00px;
+    width: 600px;
+    color: white;
 }
 body{
-    background:  url(https://i.kinja-img.com/gawker-media/image/upload/s--l7iuH88y--/c_scale,fl_progressive,q_80,w_800/shc76uhbyktdsffvcco5.gif) no-repeat right;
-    background-size: 30%;
-
+    background: black  url(https://i.kinja-img.com/gawker-media/image/upload/s--l7iuH88y--/c_scale,fl_progressive,q_80,w_800/shc76uhbyktdsffvcco5.gif) no-repeat right;
+    background-size: 40%;
+    background-position: 20px 220px;
+    /* background: flex;
+    justify-content:flex-end; */
 }
+
+    
+
 
 .btnp{
     padding: 5px 20px 5px ;
-    margin-left: 15px;
-    font-size:  15px;
+    margin-left: 220px;
+    font-size:  20px;
     color: rgb(22, 24, 36);
     border-radius: 50px;
     transition: all 500ms ease;

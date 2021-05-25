@@ -7,7 +7,11 @@ export const REGION_FILTER = 'REGION_FILTER'
 export const GET_ACTIVITIES = 'GET_ACTIVITIES'
 export const ASCENDING = 'ASCENDING'
 export const DESCENDING = 'DESCENDING'
-export const GET_API = 'https://localhost:5000/countries'
+export const GET_API = 'http://localhost:5000/countries'
+export const SORT_POPULATION = 'SORT_POPULATION'
+export const CREATE_ACTIVITY = 'CREATE_ACTIVITY'
+export const POP_ASCENDING = 'POP_ASCENDING'
+export const POP_DESCENDING = 'POP_DESCENDING'
 
 export const COUNTRIES = [
 
