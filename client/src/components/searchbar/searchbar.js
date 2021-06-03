@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Country from '../country/country.js';
 import { getCountryById, getCountryByName } from '../../actions/actions'
 
-import "./searchbar.css"
+import style from"./searchbar.module.css"
 
 export function Search(props) {
 	const [input, setInput] = useState({
@@ -11,12 +11,14 @@ export function Search(props) {
 	})
 
 	function handleChange(e){
-		if(typeof e.target.value  === "number"){
-			alert("Please enter a valid name")
-		}
+		// if(typeof e.target.value  === "number"){
+		// 	alert("Please enter a valid name")
+		// }
     setInput({
     	country: e.target.value
+		
     })};
+	console.log(input)
 
     function handleSubmit(e){
     	e.preventDefault()
@@ -29,18 +31,17 @@ export function Search(props) {
   }
 
 	return(
-	<div className="cnt">
-		<form onSubmit={(e) => handleSubmit(e)}>
+	<div className={style.wrapper}>
+		<form className={style.input} onSubmit={(e) => handleSubmit(e)}>
 		<input
-		className="input"
+		className={style.search}
 		type="text"
 		placeholder="Search Country..."
 		name="pais"
 		value={input.country}
 		onChange={(e) => handleChange(e)}
-
 		/>
-		<button type="submit" className="btns">Search</button>
+		  
 		</form>
 	</div>
 	)

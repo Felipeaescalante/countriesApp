@@ -1,0 +1,99 @@
+
+  
+  .boxsort {
+    display: flex;
+    
+    margin-top: 3.5%;
+    padding: 10px;
+
+    margin-left:60%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+
+    position: center;
+    display: block;
+    width: 655px;
+    height: 300px;
+    margin: 150px ;
+    margin-left: 60%;
+    margin-top:20%;
+    overflow: hidden;
+    border-radius: 15px;
+    transition: all 0.4s;
+    background-position: 50% 50% !important;
+    background: rgb(0, 0, 0);
+    box-shadow: 0px 0px 120px -30px rgba(253, 248, 248, 0.89);
+
+  }
+  
+  .boxsort select {
+    background-color: #dfdfdf;
+    color: rgb(46, 46, 46);
+    padding: 12px;
+    width: 130px;
+    border: none;
+    font-size: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+    border-radius: 10px;   
+    display: inline-flex;
+    margin-left: 20px;
+    margin-top: 10px;
+
+    
+    
+  }
+  
+  
+  
+  .boxsort select:hover {
+    color: rgba(236, 236, 236, 0.795);
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .boxsort select option {
+    padding: 30px;
+    background-color:grey
+  }
+
+  .CreateActivity{
+    background-color: #dfdfdf;
+    color: rgb(46, 46, 46);
+    padding: 12px;
+    width: 280px;
+    border: none;
+    font-size: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+    border-radius: 10px;   
+    display: inline-flex;
+    margin-left: 21px;
+    margin-top: 35px;
+    text-align:justify
+  }
+
+  .title{
+      color: whitesmoke;
+      margin-left: 55px;
+  }
+  .input {
+    display: flex;
+    width: 280px;
+    margin-top: 25px;  
+    margin-left: 21px;
+    margin-bottom: 10px;
+    background: rgb(197, 196, 196);
+    border-radius: 7px  
+  }
+  .created{
+    color: white;
+  }
+  .boxcreated{
+    color: white;
+    margin-top:-20%;
+    margin-left: 50%
+  }

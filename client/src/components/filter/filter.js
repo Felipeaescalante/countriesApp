@@ -6,14 +6,11 @@ import { useSelector, useDispatch } from "react-redux";
 
 import {CountryActivities, getActivities, getCountries, RegionFilter} from '../../actions/actions';
 
-import style from "./filter.css"
+import style from "./filter.module.css"
 
 export function Filters(props) {
 
     const dispatch = useDispatch();
-    const activities = useSelector((store) => store.activities)
-    const Regions = useSelector((store) => store.Regions)
-
 
 
      useEffect(() => {
@@ -31,10 +28,11 @@ export function Filters(props) {
 
 
     return(
-        <div className="box">
+        <div className={style.box}>
+            <div className={style.select}>
   
-        <select name="Region" onChange={handleDispatchRegion}>
-                <option value="Region">Region</option>
+        <select className={style.region} name="Region" onChange={handleDispatchRegion}>
+                <option value="countries">Region</option>
                 <option value="Americas">Americas</option>
                 <option value="Europe">Europe</option>
                 <option value="Asia">Asia</option>
@@ -42,14 +40,16 @@ export function Filters(props) {
                 <option value="Africa">Africa</option>
                 <option value="Polar">Polar</option>
         </select>
-        <select name= "activities" onChange={handleFilter}>
+        <select className={style.activities} name= "activities" onChange={handleFilter}>
             
                 <option value="">Tourist Activity</option>
                 <option value="All">All</option>
                 {props.activities && props.activities.map(a => (
                     <option value={a.Name}>{a.Name}</option>
                 ))}
+                
         </select>
+        </div>
         </div>
     )
 }

@@ -1,20 +1,20 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-import './country.css'
+import style from './country.module.css'
 
 export function Country (props){
 	return (
 		<div>
-		<div className="continer">
+		<div className={style.container}>
 			{/* <img className="flag" src={props.Flag} alt={props.Name} /> */}
 			<Link to={`/home/detail${props.ID}`}>
-			<button className="buttonCountry"><img className="flag" src={props.Flag} alt={props.Name} /></button>
+			<button className={style.buttonCountry}><img className={style.flag} src={props.Flag} alt={props.Name} /></button>
 		    </Link>
 		</div>
-		<div className="textcountry">
-			<h2 className="region">{props.Region}</h2>
-			<div className="namecountry">
+		<div className={style.textcountry}>
+			<h2 className={style.region}>{props.Region}</h2>
+			<div className={style.namecountry}>
 			<h1 >{props.Name}</h1>
 			</div>
 		</div>

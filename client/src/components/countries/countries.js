@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Country from '../country/country';
 import {getCountries, getCountryByName} from '../../actions/actions'
 
-import style from './countries.css';
+import style from './countries.module.css';
 
 
 export function Countries (props){
@@ -16,6 +16,7 @@ export function Countries (props){
     
 
     const paises = props.countries.slice(initialCount, finalCount);
+    
 
     useEffect(() => {
         props.getCountries()
@@ -25,23 +26,28 @@ export function Countries (props){
 
            
                     <div className="">
-                        <div className="countries">
-
+                        <div className={style.countries}>
+                        
                         {paises && paises.map(c => 
-                        <div className="">
-                            <Country
+                        <div className={style.countries}>
+                            <Country 
                             Name={c.Name}
                             Flag={c.Flag}
                             Region={c.Region}
                             ID={c.ID}/>
                         </div>)}
                             </div>
-                
-                        <div className="pagination">
-                            <button  className="back"  onClick={() => setPageNumber(pageNumber - 1)}>←</button>
-                            <button className="back">{pageNumber}</button>
-                            <button className="back" onClick={() => setPageNumber(pageNumber + 1)}>	→</button>
-                        </div>
+                            
+                        <div className={style.pagination}>
+                            {paises.length >=group ?
+                            <button  className={style.back}  onClick={() => setPageNumber(pageNumber - 1)}>←</button>
+                            :null}
+                            <button className={style.back}>{pageNumber}</button>
+                            {paises.length>= group?
+                            <button className={style.back} onClick={() => setPageNumber(pageNumber + 1)}>	→</button>
+                            : null}
+                            
+                        </div> 
                     </div>
                 
             )

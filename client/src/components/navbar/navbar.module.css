@@ -5,7 +5,7 @@
   height: 100px;
   margin: 0;
   padding: 0;
-  background-color: rgba(192, 188, 188, 0.137);
+  background-color: rgba(0, 0, 0, 0.137);
 } 
 
 .tool .liNav, a, .btnNav{
@@ -62,15 +62,20 @@
 .btnNav {
   margin-left: 20px;
   padding: 9px 2px;
-  background-color: rgb(16, 170, 241); ;
   border: none;
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease 0s;
+  width: 75px;
+  text-justify: center;
 
 }
 
 .btnNav:hover {
- background-color:rgb(118, 235, 250);;
+ background-color:rgb(246, 254, 255);
+ color: black;
+}
+.icon{
+  color: rgb(118, 235, 250)
 }
 

@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap');
+.btns:hover {
+color: rgb(54, 54, 54);
+
+
+}
+  .wrapper {
+  background: linear-gradient(45deg, #a9a9aa -25%, #000000 100%);
+  height: 6vh;
+  width: 15vw;
+  border-radius:20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-left: -12%;
+  margin-top: -1.5%;
+  
+}
+.wrapper .disclaimer {
+  bottom: 15px;
+  position: absolute;
+}
+
+.input {
+  position: relative;
+}
+.input .search {
+  height: 15px;
+  width: 15px;
+  background-color: #fff;
+  border: 0;
+  border-radius: 50%;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  color: #fff;
+  outline: none;
+  padding: 5px;
+  position: relative;
+  transition: all 150ms cubic-bezier(0.2, 0.6, 0.252, 1.2);
+}
+.input .search ~ .bar {
+  height: 4px;
+  width: 15px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.15);
+  position: absolute;
+  display: block;
+  opacity: 1;
+  right: -9px;
+  top: 24px;
+  transform: rotate(45deg);
+  transition: opacity 150ms ease;
+}
+.input .search::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.795);
+}
+.input .search:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.849);
+}
+.input .search::placeholder {
+  color: rgba(255, 255, 255, 0.836);
+}
+.input .search:focus {
+  
+  height: 21px;
+  width: 180px;
+  border-radius: 10px;
+  color: #26547c;
+  font-family: "Montserrat";
+  cursor: initial;
+}
+.input .search:focus::-moz-placeholder {
+  color: #a1a1a1;
+}
+.input .search:focus:-ms-input-placeholder {
+  color: #a1a1a1;
+}
+.input .search:focus::placeholder {
+  color: #a1a1a1;
+}
+.input .search:focus ~ .bar {
+  box-shadow: none;
+  opacity: 0;
+  right: 0;
+  top: 5px;
+}

@@ -4,8 +4,9 @@ import {getCountries, getCountryById, postActivities} from "../../actions/action
 import fetch from 'node-fetch'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
+import Country from '../country/country'
 
-import "./activity.css"
+import style from "./activity.module.css"
 
 
  function CreateActivity (props) {
@@ -17,6 +18,7 @@ import "./activity.css"
         Countries: [],
 
     })
+    const [paises, setPaises] = useState([])
  
     const [inputCountry, setInputCountry] = useState({country:[]})
 
@@ -25,6 +27,7 @@ import "./activity.css"
             ...input,
             Name: name.target.value
         })
+        
     }
     function handleChallenge (e){
         setInput({
@@ -45,7 +48,7 @@ import "./activity.css"
         })
     };
 
-    let handleOnChangeCountry = (e) => {
+    function handleOnChangeCountry (e)  {
         
             props.getCountryById(e.target.value)
             setInput({
@@ -55,9 +58,12 @@ import "./activity.css"
             })
             setInputCountry({
                 country:[...inputCountry.country, props.countryName]
+                
             })
         }
         console.log(input, inputCountry)
+      
+      
         
         useEffect(() => {
     getCountries()
@@ -66,6 +72,8 @@ import "./activity.css"
         async function handleSubmit (e) {
             e.preventDefault();
             console.log(input + "esto es input")
+      
+
             try {
 				await axios.post('http://localhost:5000/activities', input
                 // {
@@ -77,35 +85,38 @@ import "./activity.css"
                     
                 // } 
                 )
-               
+               alert("Activity created!")
 				
 			} catch (err) {
 				console.log(err);
 			}
+          
 
         }
-    
-
-     return (
-
-        <div className="totativity">
-            <div className="title">
-                <h1 >Create Activity</h1>
+        
+        
+        return (
+            
+        <div className={style.boxsort}>
+            <div className={style.title}>
+                <h1 color="white">Create Activity</h1>
             </div>
-            <div className="boxactivity">
-                <form onSubmit={handleSubmit}>
-                  <input
-                    className="inputs"
+            <div className="">
+                <form  onSubmit={handleSubmit}>
+                  <input 
+                    className={style.input}
                     placeholder="Name Activity"
                     type="text"
                     name="Name"
                     required="required"
                     onChange={handleName}
                     />
-                
-
+            
+                    </form>
+             <div className={style.select}>
+            
                     <select name="Challenge"  onChange={handleChallenge} required>
-                        <option value="Challente">Select Challenge</option>
+                        <option value="Challenge">Select Challenge</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -121,6 +132,8 @@ import "./activity.css"
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
+             <div>
+             <div>
 
 
                 <select name="Season"  onChange={handleSeason} required>
@@ -130,21 +143,22 @@ import "./activity.css"
                        <option value="winter">Winter</option>
                        <option value="spring">Spring</option>
                 </select>
-            <div>
 
-                        <select className="selects" name="ID" value={input.ID} onChange={handleOnChangeCountry}>
+                <select className="selects" name="ID" value={input.ID} onChange={handleOnChangeCountry}>
                         <option value="">Select Countries</option>
                             {props.countries && props.countries.map(c => (
-                               <option value={c.ID} name="c.Name">{c.Name}</option>
-          ))}
+                                <option value={c.ID} name="c.Name">{c.Name}</option>
+                                ))}
                         
-                        </select>
-                        <div>
-                        <button type="submit" onClick={handleSubmit}>Create Activity</button>
+                </select>
+                                </div>
+                                </div>
+                        <div >
+                        <button className={style.CreateActivity} type="submit" onClick={handleSubmit}>Create Activity</button>
                         </div>
              </div>
+           
         
-                    </form>
             </div>
          </div>
     )

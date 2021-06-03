@@ -20,8 +20,7 @@ const initialState ={
     idcountry: {},
     activities: [],
     regions: [],
-    filteredCountries: [],
-    filterBy: "All",
+    
 
 }
 
@@ -44,7 +43,7 @@ function rootReducer(state = initialState, action) {
         return {
             ...state,
 			idcountry: action.payload,
-            country: action.payload.Name
+            // country: action.payload.Name
         }
     }
     if(action.type === GET_ACTIVITIES ){

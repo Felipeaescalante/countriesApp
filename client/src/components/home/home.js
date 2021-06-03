@@ -13,10 +13,10 @@ export function Home(){
 			<ul className="home">
 				<div className="cnttitulo">
 				</div>
-				<div className="filts">
+				<div className={style.sort}>
 				<Sort/>
 				</div>
-				<div>
+				<div className={style.filter}>
 				<Filters/>
 				</div>
 			</ul>
